@@ -95,12 +95,13 @@
   environment.shells = with pkgs; [ zsh ];
   programs.zsh.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment = {
+    variables = {
+      # TERMINAL = "alacritty";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+    systemPackages = with pkgs; [
      git
      bitwarden
      neovim
@@ -112,10 +113,23 @@
      # Gaming
      gamemode
      gnomeExtensions.gamemode
-  #  wget
-  ];
-
+    ];
+  };
   services.flatpak.enable = true;
+
+  fonts.fonts = with pkgs; [                # Fonts
+    carlito                                 # NixOS
+    vegur                                   # NixOS
+    source-code-pro
+    jetbrains-mono
+    font-awesome                            # Icons
+    corefonts                               # MS
+    (nerdfonts.override {                   # Nerdfont Icons override
+      fonts = [
+        "FiraCode"
+      ];
+    })
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -144,12 +158,21 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
-  # Automatic Garbage Collection
-  nix.gc = {
-	automatic = true;
-        dates = "monthly";
-	options = "--delete-older-than 30d";
+  nix = {                                   # Nix Package Manager settings
+    settings ={
+      auto-optimise-store = true;           # Optimise syslinks
+    };
+    gc = {                                  # Automatic garbage collection
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      keep-outputs          = true
+      keep-derivations      = true
+    '';
   };
+  nixpkgs.config.allowUnfree = true;        # Allow proprietary software.
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
