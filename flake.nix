@@ -1,4 +1,4 @@
-# To rebuild: sudo nixos-rebuild switch --flake .#michael
+# To rebuild: sudo nixos-rebuild switch --flake .#laptop
 
 {
   description = "My system configuration and home manager";
@@ -20,17 +20,18 @@
       config.allowUnfree = true;
     };
   in {
+
     nixosConfigurations = {
-      michael = nixpkgs.lib.nixosSystem {
+      laptop = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          ./nixos/configuration.nix
+          ./configuration.nix
           
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.michael = {
-              imports = [ ./nixos/home.nix ];
+              imports = [ ./home.nix ];
             };
           }
         ];
