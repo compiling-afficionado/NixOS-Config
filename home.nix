@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports =
+    [
+      ./desktop_environments/gnome/home_gnome.nix # Gnome desktop
+    ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "michael";
