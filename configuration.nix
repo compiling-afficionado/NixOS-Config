@@ -4,7 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./laptop/hardware-configuration.nix
-      ./desktop_environments/gnome/configuration_gnome.nix  # Gnome desktop
+      ./desktop_environments/hyprland/configuration_hyprland.nix  # Hyprland desktop
     ];
 
   # Bootloader.
@@ -103,6 +103,8 @@
     (nerdfonts.override {                   # Nerdfont Icons override
       fonts = [
         "FiraCode"
+        "Ubuntu"
+        "UbuntuMono"
       ];
     })
   ];

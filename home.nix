@@ -3,7 +3,7 @@
 {
   imports =
     [
-      ./desktop_environments/gnome/home_gnome.nix # Gnome desktop
+      ./desktop_environments/hyprland/home_hyprland.nix # Hyprland desktop
     ];
 
   # Home Manager needs a bit of information about you and the
