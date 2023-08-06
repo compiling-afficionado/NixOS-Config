@@ -4,7 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./laptop/hardware-configuration.nix
-      ./desktop_environments/hyprland/configuration_hyprland.nix  # Hyprland desktop
+      ./desktop_environments/gnome/configuration_gnome.nix  # Hyprland desktop
     ];
 
   # Bootloader.
@@ -35,14 +35,13 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
     xkbVariant = "";
   };
+
+  services.flatpak.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -91,7 +90,6 @@
      htop
     ];
   };
-  services.flatpak.enable = true;
 
   fonts.fonts = with pkgs; [                # Fonts
     carlito                                 # NixOS

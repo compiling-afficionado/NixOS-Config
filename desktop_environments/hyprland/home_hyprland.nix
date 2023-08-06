@@ -1,8 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  # TODO: finish this
+
   home.packages = with pkgs; [                               
     eww-wayland # Widgets and bar
+    waybar
     dunst # Notification daemon
     libnotify # Desktop notifications
     swww # Wallpaper manager
