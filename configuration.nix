@@ -1,17 +1,20 @@
-{ config, pkgs, ... }:
+{ config, pkgs, desktop_environment, host, ... }:
 {
+  # Imports files based on variables defined in flake.nix
+  # Funny syntax explanation: Coercing a relative path with interpolated variables to an absolute path (for imports)
+  # https://nixos.wiki/wiki/Nix_Language:_Tips_%26_Tricks
   imports =
-    [ # TODO: conditionally include the files based on host selected?
-      ./laptop/hardware-configuration.nix
-      ./laptop/configuration.nix
-      ./desktop_environments/gnome/configuration.nix # Desktop environment import
+    [
+      (./. + "/${host}/hardware-configuration.nix")
+      (./. + "/${host}/configuration.nix")
+      (./. + "/desktop_environments/${desktop_environment}/configuration.nix") # Desktop environment import
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "michael-laptop"; # Define your hostname.
+  networking.hostName = "nix-${host}"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking

@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, desktop_environment, host, ... }:
 
 {
   imports =
     [
-      ./desktop_environments/gnome/home.nix # Desktop environment home import
+      (./. + "/desktop_environments/${desktop_environment}/home.nix") # Desktop environment import
     ];
 
   # Home Manager needs a bit of information about you and the
