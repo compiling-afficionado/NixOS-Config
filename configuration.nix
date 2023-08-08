@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
-
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ # TODO: conditionally include the files based on host selected?
       ./laptop/hardware-configuration.nix
-      ./desktop_environments/gnome/configuration_gnome.nix  # Hyprland desktop
+      ./laptop/configuration.nix
+      ./desktop_environments/gnome/configuration.nix # Desktop environment import
     ];
 
   # Bootloader.
@@ -88,6 +88,7 @@
      authy
      standardnotes
      htop
+     ripgrep
     ];
   };
 

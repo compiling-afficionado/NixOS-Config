@@ -4,7 +4,6 @@
   description = "My system configuration and home manager";
 
   inputs = {
-    # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
@@ -21,6 +20,8 @@
     };
   in {
 
+    # need to supply nixosConfigurations
+    # for system configuration
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
         inherit system;
