@@ -13,6 +13,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
 
   networking.hostName = "nix-${host}"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -92,6 +93,10 @@
      standardnotes
      htop
      ripgrep
+     mpv
+     qbittorrent
+     libreoffice-fresh
+     vivaldi
     ];
   };
 
