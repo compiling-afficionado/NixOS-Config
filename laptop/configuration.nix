@@ -2,6 +2,12 @@
 
 # Only laptop settings
 {
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "us";
+    xkbVariant = "";
+  };
+
   # Make sure opengl is enabled
   hardware.opengl = {
     enable = true;

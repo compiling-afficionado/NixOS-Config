@@ -11,8 +11,16 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    grub = {
+      enable = true;
+      device = "nodev";
+      useOSProber = true;
+      efiSupport = true;
+    };
+    efi.canTouchEfiVariables = true;
+  };
+
   boot.supportedFilesystems = [ "ntfs" ];
 
   networking.hostName = "nix-${host}"; # Define your hostname.
@@ -39,12 +47,6 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
-
   services.flatpak.enable = true;
 
   # Enable CUPS to print documents.
@@ -66,9 +68,6 @@
     isNormalUser = true;
     description = "Michael";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-    ];
   };
 
   # Zsh settings (this has to be set here despite home.nix)
@@ -91,12 +90,12 @@
      discord
      authy
      standardnotes
-     htop
      ripgrep
      mpv
      qbittorrent
      libreoffice-fresh
      vivaldi
+     firefox
     ];
   };
 

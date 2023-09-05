@@ -1,4 +1,4 @@
-# To rebuild: sudo nixos-rebuild switch --flake .#laptop
+# To rebuild: sudo nixos-rebuild switch --flake .#michael
 
 {
   description = "My system configuration and home manager";
@@ -15,8 +15,8 @@
   let 
     system = "x86_64-linux";
 
-    host = "laptop"; # Change this for new host configuration
-    desktop_environment = "gnome"; # Change this for new DE configuration
+    host = "desktop"; # Change this for new host configuration
+    desktop_environment = "kde"; # Change this for new DE configuration
 
     pkgs = import nixpkgs {
       inherit system;
@@ -27,7 +27,7 @@
     # need to supply nixosConfigurations
     # for system configuration
     nixosConfigurations = {
-      laptop = nixpkgs.lib.nixosSystem {
+      michael = nixpkgs.lib.nixosSystem {
         inherit system;
         
         # TODO: is this the best way to pass variables to modules? How does specialArgs work?
