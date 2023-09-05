@@ -52,6 +52,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Enable mullvad daemon
+  services.mullvad-vpn.enable = true;
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -96,6 +99,8 @@
      libreoffice-fresh
      vivaldi
      firefox
+     mullvad
+     neofetch
     ];
   };
 

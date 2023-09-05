@@ -33,15 +33,20 @@
     home-manager.enable = true;
 
     zsh = {
-    enable = true;
-    enableCompletion = true;
-    enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
-    oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
-      theme = "robbyrussell";
+      enableCompletion = true;
+      enableAutosuggestions = true;
+      enableSyntaxHighlighting = true;
+      initExtra = ''eval "$(direnv hook zsh)"'';
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" ];
+        theme = "robbyrussell";
       };
+      # shellAliases = {
+      #   ll = "ls -l";
+      #   update = "sudo nixos-rebuild switch";
+      # };
     };
 
     direnv = {
