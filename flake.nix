@@ -16,8 +16,8 @@
     system = "x86_64-linux";
 
     # TODO: pass this in flake input? Currently difficult to work on this repo from different devices. Or define these variables per host
-    host = "laptop"; # Change this for new host configuration
-    desktop_environment = "gnome"; # Change this for new DE configuration
+    host = "desktop"; # Change this for new host configuration
+    desktop_environment = "kde"; # Change this for new DE configuration
 
     pkgs = import nixpkgs {
       inherit system;

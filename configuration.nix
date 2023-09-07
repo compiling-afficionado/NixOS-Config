@@ -15,7 +15,9 @@
     grub = {
       enable = true;
       device = "nodev";
-      useOSProber = true;
+
+      # Uncomment to probe other OS
+      # useOSProber = true;
       efiSupport = true;
     };
     efi.canTouchEfiVariables = true;
