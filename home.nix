@@ -36,7 +36,7 @@
       enable = true;
       enableCompletion = true;
       enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting.enable = true;
       initExtra = ''eval "$(direnv hook zsh)"'';
       oh-my-zsh = {
         enable = true;
