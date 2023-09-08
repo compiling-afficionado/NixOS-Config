@@ -17,7 +17,7 @@
       device = "nodev";
 
       # Uncomment to probe other OS
-      # useOSProber = true;
+      useOSProber = true;
       efiSupport = true;
     };
     efi.canTouchEfiVariables = true;
@@ -87,33 +87,38 @@
       VISUAL = "nvim";
     };
     systemPackages = with pkgs; [
-     git
-     bitwarden
-     neovim
-     vscodium
-     spotify
-     discord
-     authy
-     standardnotes
-     ripgrep
-     mpv
-     qbittorrent
-     libreoffice-fresh
-     vivaldi
-     firefox
-     mullvad
-     neofetch
+      git
+      bitwarden
+      neovim
+      spotify
+      discord
+      authy
+      standardnotes
+      ripgrep
+      mpv
+      qbittorrent
+      libreoffice-fresh
+      vivaldi
+      firefox
+      mullvad
+      neofetch
+
+      # TODO: is having these here the best approach?
+      nil # nix language server (used for vscode)
+      nixpkgs-fmt # nix code formatter
     ];
   };
 
-  fonts.packages = with pkgs; [             # Fonts
-    carlito                                 # NixOS
-    vegur                                   # NixOS
+  fonts.packages = with pkgs; [
+    # Fonts
+    carlito # NixOS
+    vegur # NixOS
     source-code-pro
     jetbrains-mono
-    font-awesome                            # Icons
-    corefonts                               # MS
-    (nerdfonts.override {                   # Nerdfont Icons override
+    font-awesome # Icons
+    corefonts # MS
+    (nerdfonts.override {
+      # Nerdfont Icons override
       fonts = [
         "FiraCode"
         "Ubuntu"
@@ -130,11 +135,13 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
-  nix = {                                   # Nix Package Manager settings
-    settings ={
-      auto-optimise-store = true;           # Optimise syslinks
+  nix = {
+    # Nix Package Manager settings
+    settings = {
+      auto-optimise-store = true; # Optimise syslinks
     };
-    gc = {                                  # Automatic garbage collection
+    gc = {
+      # Automatic garbage collection
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
@@ -145,5 +152,5 @@
       keep-derivations      = true
     '';
   };
-  nixpkgs.config.allowUnfree = true;        # Allow proprietary software.
+  nixpkgs.config.allowUnfree = true; # Allow proprietary software.
 }
