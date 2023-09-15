@@ -13,9 +13,9 @@ How to set up a machine with this config:
 4. Enter shell with 'nix-shell -p git' and clone this repo
 5. Cd into the flake config directory
 6. Copy your hardware configuration into appropriate profile e.g. if using desktop, place it in desktop/ (sudo cp /etc/nixos/hardware-configuration.nix ~/[path to this repo]/desktop/)
-7. Run 'sudo nixos-rebuild boot --flake .#michael' to switch to grub
+7. Run 'sudo nixos-rebuild boot --flake .#nix-desktop' to switch to grub
 8. Run 'sudo nix flake update' to update packages
-9. Run 'sudo nixos-rebuild switch --flake .#michael' to apply configuration to OS
+9. Run 'sudo nixos-rebuild switch --flake .#nix-desktop' to apply configuration to OS
 
 
 Vscodium extension updates:

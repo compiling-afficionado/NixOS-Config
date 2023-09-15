@@ -1,15 +1,5 @@
-{ config, pkgs, desktop_environment, host, ... }:
+{ pkgs, ... }:
 {
-  # Imports files based on variables defined in flake.nix
-  # Funny syntax explanation: Coercing a relative path with interpolated variables to an absolute path (for imports)
-  # https://nixos.wiki/wiki/Nix_Language:_Tips_%26_Tricks
-  imports =
-    [
-      (./. + "/${host}/hardware-configuration.nix")
-      (./. + "/${host}/configuration.nix")
-      (./. + "/desktop_environments/${desktop_environment}/configuration.nix") # Desktop environment import
-    ];
-
   # Bootloader.
   boot.loader = {
     grub = {
@@ -25,7 +15,6 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
 
-  networking.hostName = "nix-${host}"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
@@ -102,10 +91,6 @@
       firefox
       mullvad
       neofetch
-
-      # TODO: is having these here the best approach?
-      nil # nix language server (used for vscode)
-      nixpkgs-fmt # nix code formatter
     ];
   };
 

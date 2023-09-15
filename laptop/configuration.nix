@@ -2,6 +2,9 @@
 
 # Only laptop settings
 {
+  # This is set to the same value as the hostname for this configuration in the flake.nix
+  networking.hostName = "nix-laptop"; # Define your hostname.
+
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
@@ -16,7 +19,7 @@
   };
 
   # Tell Xorg to use the nvidia driver (also valid for Wayland)
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
 

@@ -11,13 +11,9 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager }:
+  outputs = { self, nixpkgs, home-manager } @inputs:
     let
       system = "x86_64-linux";
-
-      # TODO: pass this in flake input? Currently difficult to work on this repo from different devices. Or define these variables per host
-      host = "desktop"; # Change this for new host configuration
-      desktop_environment = "kde"; # Change this for new DE configuration
 
       pkgs = import nixpkgs {
         inherit system;
@@ -26,24 +22,53 @@
     in
     {
 
-      # need to supply nixosConfigurations
-      # for system configuration
-      nixosConfigurations = {
-        michael = nixpkgs.lib.nixosSystem {
-          inherit system;
+      devShells.${system}.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          nil # nix language server
+          nixpkgs-fmt # nix code formatter
+        ];
+      };
 
-          # TODO: is this the best way to pass variables to modules? How does specialArgs work?
-          specialArgs = { inherit desktop_environment host; };
+      nixosConfigurations = {
+        nix-desktop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           modules = [
             ./configuration.nix
+            ./desktop/hardware-configuration.nix
+            ./desktop/configuration.nix # desktop specific configuration
+            ./desktop_environments/kde/configuration.nix # KDE desktop environment
 
             home-manager.nixosModules.home-manager
             {
-              home-manager.extraSpecialArgs = { inherit desktop_environment host; };
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.michael = {
-                imports = [ ./home.nix ];
+                imports = [ 
+                  ./home.nix
+                  ./desktop_environments/kde/home.nix ];
+              };
+            }
+          ];
+        };
+
+        nix-laptop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./configuration.nix
+            ./laptop/hardware-configuration.nix
+            ./laptop/configuration.nix # laptop specific configuration
+            ./desktop_environments/gnome/configuration.nix # Gnome desktop environment
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.michael = {
+                imports = [ 
+                  ./home.nix
+                  ./desktop_environments/gnome/home.nix ];
               };
             }
           ];
