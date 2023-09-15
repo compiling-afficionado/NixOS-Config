@@ -1,5 +1,33 @@
 { pkgs, ... }:
 {
+  environment = {
+    variables = {
+      # TERMINAL = "alacritty";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+    systemPackages = with pkgs; [
+      git
+      bitwarden
+      neovim
+      spotify
+      discord
+      authy
+      standardnotes
+      ripgrep
+      mpv
+      qbittorrent
+      libreoffice-fresh
+      vivaldi
+      firefox
+      mullvad
+      neofetch
+      lsd
+      bat
+      ripgrep
+    ];
+  };
+
   # Bootloader.
   boot.loader = {
     grub = {
@@ -69,31 +97,6 @@
   environment.shells = with pkgs; [ zsh ];
   programs.zsh.enable = true;
 
-  environment = {
-    variables = {
-      # TERMINAL = "alacritty";
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-    };
-    systemPackages = with pkgs; [
-      git
-      bitwarden
-      neovim
-      spotify
-      discord
-      authy
-      standardnotes
-      ripgrep
-      mpv
-      qbittorrent
-      libreoffice-fresh
-      vivaldi
-      firefox
-      mullvad
-      neofetch
-    ];
-  };
-
   fonts.packages = with pkgs; [
     # Fonts
     carlito # NixOS
@@ -105,9 +108,9 @@
     (nerdfonts.override {
       # Nerdfont Icons override
       fonts = [
-        "FiraCode"
         "Ubuntu"
         "UbuntuMono"
+        "Hack"
       ];
     })
   ];

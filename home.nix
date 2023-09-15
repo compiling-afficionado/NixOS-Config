@@ -17,8 +17,12 @@
         theme = "robbyrussell";
       };
       shellAliases = {
-        update = "sudo nix flake update";
-        switch = "sudo nixos-rebuild switch --flake";
+        # Assumes you have the config repo in your home dir
+        update = "echo Running: sudo nix flake update ~/NixOS-Config/. && sudo nix flake update ~/NixOS-Config/.";
+        switch = "echo Running: sudo nixos-rebuild switch --flake ~/NixOS-Config# && sudo nixos-rebuild switch --flake ~/NixOS-Config#";
+
+        ls = "lsd";
+        cat = "bat";
       };
     };
 
@@ -128,6 +132,7 @@
         };
 
         "git.enableCommitSigning" = true;
+        "terminal.integrated.fontFamily" = "Hack Nerd Font Mono";
       };
     };
   };
