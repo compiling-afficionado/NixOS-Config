@@ -1,5 +1,11 @@
 ## How to set up a machine with this config:
 
+#### :warning: If your user is not "michael" change all occurences of "michael" in the code to your user name! Also modify [host]/configuration.nix to include correct drivers!
+
+**TODO**: move driver configurations in to separate files so they are easier to not include. Also extract user name to a variable so would only need to change "michael" in one place?
+
+**TODO**: add overview of config structure
+
 1. Install NixOS on your machine
 2. Add this to your /etc/nixos/configuration.nix:
     ```
