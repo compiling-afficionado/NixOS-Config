@@ -22,7 +22,7 @@
         switch = "echo Running: sudo nixos-rebuild switch --flake ~/NixOS-Config# && sudo nixos-rebuild switch --flake ~/NixOS-Config#";
 
         ls = "lsd";
-        cat = "bat";
+        # cat = "bat";
       };
     };
 
@@ -77,12 +77,12 @@
           version = "1.15.31";
           sha256 = "sha256-GwNSpgQe8/rdYAsGvUUFS7LLRR1RkjEdu8f7ArhCimU=";
         }
-        {
-          name = "rust-analyzer";
-          publisher = "rust-lang";
-          version = "0.4.1652";
-          sha256 = "0ilq6pqb5ajfnwb0a6wpcixxkrw3dcvk5na5zim0gp86q0c8xw9i";
-        }
+        #{
+          #name = "rust-analyzer";
+          #publisher = "rust-lang";
+          #version = "0.4.1652";
+          #sha256 = "0ilq6pqb5ajfnwb0a6wpcixxkrw3dcvk5na5zim0gp86q0c8xw9i";
+        #}
         {
           name = "clang-tidy";
           publisher = "notskm";
@@ -155,7 +155,7 @@
 
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
-    username = "michael";
-    homeDirectory = "/home/michael";
+    username = "gigachad";
+    homeDirectory = "/home/gigachad";
   };
 }

@@ -86,14 +86,14 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.michael = {
+  users.users.gigachad = {
     isNormalUser = true;
-    description = "Michael";
+    description = "GigaChad";
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
   # Zsh settings (this has to be set here despite home.nix)
-  users.users.michael.shell = pkgs.zsh;
+  users.users.gigachad.shell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
   programs.zsh.enable = true;
 
